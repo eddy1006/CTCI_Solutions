@@ -1,3 +1,13 @@
+/*------------------------Question---------------------------
+Flip Bit to Win: You have an integer and you can flip exactly one bit from a O to a 1. Write code to 
+find the length of the longest sequence of 1 s you could create. 
+EXAMPLE 
+Input: 1775 
+Output: 8
+--------------------------------------------------------------*/
+
+
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -47,7 +57,7 @@ int solve(int n){
         if(n&1 == 1){ //current bit is 1
             currentLength++;
         }else{   //current bit is 0
-            previousLength = (n&2) == 0 ? 0 : currentLength;
+            previousLength = (n&2) == 0 ? 0 : currentLength;  //checking if this is a single zero or a sequence
             currentLength = 0; 
         }
         maximum = max(currentLength+previousLength+1,maximum); 
