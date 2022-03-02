@@ -38,12 +38,32 @@ int max_sequence(int n){
     return max_count;
 }
 
+
+int solve(int n){
+    int currentLength = 0;
+    int previousLength = 0;
+    int maximum = 1;
+    while(n!=0){
+        if(n&1 == 1){ //current bit is 1
+            currentLength++;
+        }else{   //current bit is 0
+            previousLength = (n&2) == 0 ? 0 : currentLength;
+            currentLength = 0; 
+        }
+        maximum = max(currentLength+previousLength+1,maximum); 
+        n = n >> 1; 
+    }
+    return maximum;
+}
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     int n;
     cin>>n;
+    cout<<"Answer by optimal method: ";
+    cout<<solve(n)<<"\n";
     int temp = n;
     int count = 0;
     int maximum = -1;
